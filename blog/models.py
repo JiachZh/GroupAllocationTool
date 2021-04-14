@@ -42,7 +42,7 @@ class Lecturer(db.Model):
   is_admin=db.Column(db.Boolean,nullable=False,default=False)
 
   def __repr__(self):
-    return f"Lecturer('{self.userID}','{self.email}')"
+    return f"Lecturer('{self.lecturerID}','{self.email}')"
 
   @property
   def password(self):
