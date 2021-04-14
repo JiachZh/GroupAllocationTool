@@ -3,6 +3,11 @@ from blog import db, login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+studentModules = db.Table('studentModules',
+    db.Column('studentID', db.Integer, db.ForeignKey('student.studentID')),
+    db.Column('moduleCode', db.String, db.ForeignKey('module.code'))
+)
+
 class Student(UserMixin,db.Model):
   studentID=db.Column(db.Integer,primary_key=True)
   firstname=db.Column(db.String(15),nullable=False)
@@ -12,7 +17,7 @@ class Student(UserMixin,db.Model):
   password=db.Column(db.String(60),nullable=False)
   priorProgExp=db.Column(db.Integer,primary_key=True)
   priorSTEMDegree=db.Column(db.Boolean,nullable=False,default=False)
-  groupPerModule==db.Column(db.String(60),nullable=False)
+  groupPerModule=db.Column(db.String(60),nullable=False)
   modules = db.relationship('Module', secondary=studentModules, backref=db.backref('students', lazy='dynamic'))
 
   def __repr__(self):
@@ -26,10 +31,6 @@ class Module(db.Model):
   def __repr__(self):
     return f"Module('{self.code}', '{self.title}')"
 
-studentModules = db.Table('studentModules',
-    db.Column('studentID', db.Integer, db.ForeignKey('student.studentID')),
-    db.Column('moduleCode', db.String, db.ForeignKey('module.code'))
-)
 
 class Lecturer(db.Model):
   lecturerID=db.Column(db.Integer,primary_key=True)
@@ -75,5 +76,5 @@ class Questionnaire(db.Model):
   option2=db.Column(db.String(20),nullable=False)
   option3=db.Column(db.String(20),nullable=False)
 
- def __repr__(self):
-   return f"Questionnaire('{self.questionnaireID}')"
+  def __repr__(self):
+    return f"Questionnaire('{self.questionnaireID}')"

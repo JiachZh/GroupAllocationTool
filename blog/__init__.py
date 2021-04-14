@@ -16,12 +16,4 @@ login_manager.login_message = 'Please log in to access this feature!'
 
 from blog import routes
 
-from flask_admin import Admin
-from blog.views import AdminView
-from blog.models import Student, Module, Lecturer 
-# admin = Admin(app,name='Admin panel',template_mode='bootstrap3')
-# admin.add_view(AdminView(User, db.session))
-# admin.add_view(AdminView(Post, db.session))
-# admin.add_view(AdminView(Comment, db.session))
-# admin.add_view(AdminView(Rating, db.session))
-# admin.add_view(AdminView(Tag, db.session))
+from blog.models import Student, Module, Lecturer, Option, Questionnaire
