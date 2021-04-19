@@ -1,0 +1,1270 @@
+@charset "utf-8"
+
+.flex-box{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+body{
+    color: black;
+    overflow-x:hidden;
+} 
+
+element {
+	display: flex;
+	align-items: center;
+}
+
+a{
+    color:#ededed;
+}
+
+a:hover{
+    color: #777777;
+}
+
+/* Navbar */
+
+.navbarContainer{
+    width: 100%;
+}
+#navbar{
+    height: 50px;
+    padding: 0 20px;
+    width: 100%;
+    position: fixed;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.navbar-custom { 
+    background-color: #ededed; 
+} 
+
+.navbar-custom .navbar-text{
+    color: #2eaf7d;
+}
+
+.nav-link{
+    color: #2eaf7d;
+}
+
+.nav-link:hover{
+    color: #777777;
+}
+/* 
+Code for changing colour of navbar-toggler taken from https://stackoverflow.com/questions/42586729/bootstrap-4-change-hamburger-toggler-color
+accessed 19.2.2020, updated to use my chosen colours
+end of referenced code. */
+
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(46,175,12, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+  }
+  
+.navbar-toggler {
+    border-color: #2eaf7d;
+  } 
+
+  /* 
+Code for removing border of navbar-toggler taken from  https://stackoverflow.com/questions/50668594/remove-border-color-for-navbar-toggler-hamburger-icon-bootstrap-4
+accessed 19.2.2020
+end of referenced code. */
+ 
+.navbar-toggler:hover,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus{
+    outline: none;
+    box-shadow: none;
+}
+#searchBox{
+    margin-left: 20px;;
+    margin-top: 5px;
+    height:30px;
+    border-radius: .25rem;
+    max-width: 200px;
+}
+
+#name{
+    color: #2eaf7d;
+}
+
+#navbarSecondCol{
+    padding-left:20px;
+}
+#secondColContent{
+    float: right;
+}
+
+.navbar-collapse{
+    background: #ededed;
+    text-align: left;
+}
+
+#spanlinkedin{
+    height:20px;
+    width:20px;
+    align-items: center;
+}
+#circle{
+    color:#2eaf7d;
+    font-size: 16px;
+
+}
+#linkedIn{
+    color: #ededed;
+    font-size: 12px;
+    margin-top:-7.5px;
+}
+
+/* Flashes bar */
+#flashes{
+    width:100%;
+    height:100px;
+    background-color: #2eaf7d;
+    color: white;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    padding-right: 5%;
+}
+
+.flashes {
+    position: absolute;
+    bottom: 0;
+    right: 0;  
+    margin-right: 3%;  
+    margin-bottom: 10px;
+}
+/* 
+Code for creating custom list icons taken from https://stackoverflow.com/questions/13354578/custom-li-list-style-with-font-awesome-icon
+accessed 06.2.2020, updated to use my chosen icon image, and specific margins, sizing etc
+end of referenced code. */
+
+.flashes li{
+    list-style-type: none;
+}
+
+.flashes li::before {
+content: "\f005";
+font-family: "Font Awesome 5 Free";
+padding: 0 7px 0 0;
+margin-left: -25px;
+color: white;
+}
+
+/* home page */
+
+.titleContainer{
+    background-color: #2eaf7d;
+}
+.titleBanner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2eaf7d;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.bannerImage img{
+    border-radius: 50%;
+    border: 7px solid white;
+    width: 150px;
+    margin-left: 20px;
+}
+.titleBanner h2{
+    color:#c1f6ed;
+}
+
+.ABlogBy{
+    flex-shrink: 0;
+    font-size:1.3rem;
+    padding-left: 10px;
+    margin-top: -10px;
+}
+
+.Helen{
+    flex-shrink: 0;
+    font-size: 5rem;
+}
+
+.Helen a{
+    text-decoration: none;
+}
+
+.completingMSc{
+    flex-shrink: 0;
+    padding-top: 90px;
+    margin-left: -110px;
+}
+
+.subTitleSection{
+    display: flex;
+    background-color: #2eaf7d;
+    padding-top: 100px;
+}
+
+.subTitleText{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ededed;
+    width: 90%;
+    margin-left:5%;
+    padding-top: 10px;
+    align-items: center;
+}
+.homeSubtitle{
+    color:#2eaf7d;
+    font-size: 2rem;
+    margin-left: 2%;
+}
+.linkAllPosts{
+    color:#2eaf7d;
+    margin-top: 0;
+    margin-right: 2%
+}
+
+.linkAllPosts a{
+    color:#727c7a;
+    text-decoration: none;
+}
+.linkAllPosts a:hover{
+    color:#ededed;
+}
+.postsSection{
+    padding: 0px 5% 100px;
+    background-color: #2eaf7d;
+}
+
+.imageContainer{
+    position: relative;
+}
+.postImage{
+    width: 100%;
+    height:100%;
+}
+
+/* 
+Code to add image overlay on hover adapted from https://stackoverflow.com/questions/18322548/black-transparent-overlay-on-image-hover-with-only-css
+accessed 18.2.2020, rewritten  to have specified sizes, colours, opacity and text
+end of referenced code. */
+
+.imageDescription{
+    text-align: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top:100px;
+    background: rgba(255, 255, 255, 0.7);
+    color:#2eaf7d;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.imageDescription h2{
+    color:#2eaf7d;
+}
+.imageDescription p{
+    display: inline-block;
+    font-family: 'Merriweather Sans', sans-serif;
+    width: 70%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.imageContainer:hover .imageDescription{
+    visibility: visible;
+    opacity: 1;
+}
+
+.postTitle{
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    padding-bottom: 6px;
+}
+
+/* All Posts Page */
+
+
+.allPostsContainer{
+    padding-top: 100px;
+    display:flex;
+    background-color: #2eaf7d;
+    align-items: center;
+    justify-content: center;
+}
+.allPostsBanner{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #ededed;
+    padding: 10px;
+}
+
+.allPostsBanner h2{
+    padding-bottom: 0;
+    margin-bottom: 0;
+    margin-right: auto;
+}
+
+#dropdownMenuButton{
+    vertical-align: middle;
+    height: 35px;
+    background-color: white;
+    color: #2eaf7d;
+    height:42.23px;
+    font-size: 1.5rem;
+    padding: 0 .75rem;
+    border: 2px solid #2eaf7d;
+    margin-right: 15px;
+}
+
+.sortBySubmit{
+    vertical-align: middle;
+    height:60px;
+    margin-top: 0;
+}
+
+#submit{
+    border-radius: .25rem;
+    color:#2eaf7d;
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    height:42.23px;
+    border-width: 0px;
+    margin-left: -10px;
+    border: 2px solid #2eaf7d;
+    background-color: white;
+}
+
+#sortByColumn{
+    padding-left: 160px;
+}
+
+/* Post page */
+#postTitleSection{
+    background-color: #2eaf7d;
+    text-align: center;
+    padding-bottom: 50px;
+    font-size: 7rem;
+    margin-bottom: 30px;
+}
+
+#postTitle{
+    color:white;
+    font-family: 'Sacramento', cursive;
+    font-size: 5rem;
+    font-weight: 500;
+    margin-bottom: 0;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#postAuthor{
+    color:white;
+}
+
+#contents{
+    padding-top:15px;
+}
+.postSection{
+    font-family:  'Merriweather Sans', sans-serif;
+    color:#727c7a;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+}
+
+.postContainer img{
+    width: 50%;
+    float: left;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    padding-left: 5%;
+}
+
+.postContainer p, .postContainer h2{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+#tags{
+    background-color:#c1f6ed;
+}
+
+#tags h2{
+    color:#727c7a;
+    font-size: 2rem;
+    font-weight: normal;
+}
+#tagSubtitle{
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: right;
+    margin-top: -15px;
+}
+.tagLabels{
+    text-align: right;
+}
+#outof5{
+    font-size: 1.2rem;
+}
+.formLabel{
+    font-size: 1.5rem;
+    margin-right: 5px;
+    margin-top: .3em;
+}
+#comments{
+    background-color: #2eaf7d;
+}
+
+#comments h2{
+    color: white;
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.commentUsername{
+    font-size: 1.5rem;
+    color:#ededed;
+}
+
+.commentContent{
+    font-size: 1.2rem;
+}
+
+#commentFormItems{
+    text-align: right;
+}
+.commentBox{
+    border-radius: .25rem;
+    border: none;
+    height: 38.23px;
+    text-align: center;
+}
+
+.commentSubmit #submit{
+    margin-left: 10px;
+    margin-top: -2px;
+}
+
+#comments #tagSubtitle{
+    color:#ededed;
+}
+
+.titleRow{
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.finalRow{
+    padding-bottom: 60px;
+}
+.postContainer #submit{
+    font-size: 1.2rem;
+}
+
+#starContainer{
+    display: flex;
+}
+
+.fa-star{
+    margin-left: 10px;
+    color: #727c7a;
+    font-size: 2.3rem;
+}
+
+/* Register Page */
+
+#registerTitle{
+    background-color: #2eaf7d;
+    text-align: center;
+    padding-bottom: 50px;
+    font-size: 6rem;
+    margin-bottom: 30px;
+    padding-top:  30px;
+}
+
+#registerContainer{
+    margin-top: 30px;
+    display: inline;
+    background-color: #2eaf7d;
+}
+.registerLabel{
+    margin-left:35px;
+    width: 300px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: #2eaf7d;
+    font-size: 1.3rem;
+}
+
+.registerBox{
+    margin-left: 40px;
+    margin-top: 20px;
+    width: 355px;
+    font-family: 'Merriweather Sans', sans-serif;
+    border-radius: .25rem;
+    border-style: solid;
+
+}
+
+#registerButton{
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    width: 600px;
+    background-color: white;
+    color: #2eaf7d;
+    border: 0;
+    font-size: 1.6rem;
+    padding: 10px; 0;
+}
+
+#registerButton:hover{
+    background-color: #c1f6ed;
+    color: #2eaf7d;
+}
+
+#buttonRow{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 30px;
+    padding-bottom: 400px;
+    background-color: #2eaf7d;   
+}
+
+.flexRow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2eaf7d;
+}
+
+.flexRow p{
+    padding-left:50%;
+    margin-bottom: -20px;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+
+/* Login Page */
+#loginTitle{
+    padding-top: 30px;
+    background-color: #2eaf7d;
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 6rem;
+    margin-bottom: 0;
+}
+
+#loginSection{
+    background-color: #2eaf7d;
+}
+#loginContainer{
+    margin-top: 30px;
+    display: inline;
+    background-color: #2eaf7d;
+}
+
+.loginLabel{
+    margin-left:60px;
+    width: 300px;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.loginBox{
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 355px;
+    font-family: 'Merriweather Sans', sans-serif;
+    border-radius: .25rem;
+    border-style: solid;
+}
+
+#loginButton{
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    width: 600px;
+    background-color: white;
+    color: #2eaf7d;
+    border: 0;
+    font-size: 1.6rem;
+    padding: 10px; 0;
+}
+
+#loginButton:hover{
+    background-color: #c1f6ed;
+    color: #2eaf7d;
+}
+
+#LoginbuttonRow{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-bottom: 400px;
+    background-color: #2eaf7d;   
+}
+.loginFooter{
+    color:white;
+    text-align: center;
+    padding-top: 20px;;
+}
+/* User Account */
+
+#userTitle{
+    background-color: #2eaf7d;
+    text-align: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+#userTitle h1{
+    font-size: 6rem;
+}
+#userTitle h2{
+    color: white;
+}
+.removeTagRow{
+    text-align: center;
+    padding-top: .5rem;
+    padding-bottom: 2rem;
+}
+
+.removeTagRow #submit{
+    background-color: #2eaf7d;
+    color: white;
+    border: 2px solid white;
+    margin-left: 0;
+}
+/* About Me Page */
+
+/* 
+Code for this page taken from a project completed as part of a Udemy web development course https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12383818?start=150#overview
+accessed 11.2.2020, inspiation used for creation of navbar and font syles, all code rewritten to include my particular styling, colours, sizings, information and links
+end of referenced code. */
+
+/* 
+Styling inspiration for this page taken from sample CV websites at https://cgroom.medium.com/a-software-engineers-one-page-portfolio-4f85ab8a20d1
+accessed 11.2.2020, code written to include my particular styling, colours, sizings, information and links
+end of referenced code. */
+
+#title{
+    text-align: center;
+    padding: 0 0 100px;
+    background-color: #2eaf7d;
+}
+
+
+#title h2{
+    color: #c1f6ed ;
+    font-size: 2.2rem;
+}
+
+
+#profilepic {
+    border-radius: 50%;
+    border: 10px solid white;
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+h1{
+    color:white;
+    font-family: 'Sacramento', cursive;
+    font-size: 7rem;
+    font-weight: 500;
+}
+
+h2{
+    color: #2eaf7d;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    padding-bottom: 6px;
+}
+
+#skills_section{
+    background-color: white;
+    padding: 80px 7% 100px;
+}
+
+#skills_summary p{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #727c7a;
+    font-size:1.1rem;
+}
+
+#skills_section span{
+    font-weight: bold;
+}
+/* 
+Code for creating custom list icons taken from https://stackoverflow.com/questions/13354578/custom-li-list-style-with-font-awesome-icon
+accessed 06.2.2020, updated to use my chosen icon image, and specific margins, sizing etc
+end of referenced code. */
+
+#skills_section ul{
+    padding-left: 12%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size:1.1rem;
+    color: #727c7a;
+    list-style-type: none;
+}
+
+#skills_section li::before {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 7px 0 0;
+    margin-left: -25px;
+    color: #2eaf7d;
+}
+
+#skills_section li{
+    padding-bottom: 5px;
+}
+
+#studying{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #727c7a;
+}
+
+#career_section{
+    background-color: #c1f6ed;
+    padding: 80px 7% 100px;
+}
+
+#career_section h2{
+    /* color: #367aa2; */
+    color: #2eaf7d;
+}
+
+#career_section span{
+    font-weight: bold;
+}
+#career_summary p{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #727c7a;
+    font-size:1.1rem;
+}
+
+#career_list{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #727c7a;
+    list-style-type: none;
+    font-size:1.1rem;
+}
+
+/* 
+Code for creating custom list icons taken from https://stackoverflow.com/questions/13354578/custom-li-list-style-with-font-awesome-icon
+accessed 06.2.2020, updated to use my chosen icon image, and specific margins, sizing etc
+end of referenced code. */
+
+
+#career_list li::before {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 7px 0 0;
+    margin-left: -25px;
+    color: #2eaf7d;
+}
+
+#career_list li{
+    padding-bottom: 8px;
+}
+
+#exp_and_ed{
+    background-color: #2eaf7d;
+    padding: 80px 0 200px;
+}
+
+#exp_and_ed span{
+    font-weight: bold;
+}
+
+#exp_and_ed_grid{
+    margin: 0 7%;
+}
+
+#exp_and_ed h2{
+    color: #c1f6ed;
+}
+/* 
+Code for creating custom list icons taken from https://stackoverflow.com/questions/13354578/custom-li-list-style-with-font-awesome-icon
+accessed 06.2.2020, updated to use my chosen icon image, and specific margins, sizing etc
+end of referenced code. */
+
+#exp_and_ed ul{
+    color: white;
+    list-style-type: none;
+    font-size: 1.1rem;
+}
+
+#exp_and_ed li::before {
+    content: "\f005";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 7px 0 0;
+    margin-left: -25px;
+    color: white;
+}
+
+#exp_and_ed li{
+    padding-bottom: 8px;
+}
+
+#interests{
+    padding: 60px 7%;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size:1.1rem;
+    color: #727c7a;
+}
+
+#interest_icons{
+    padding-top: 10px;
+    font-size: 1.8rem;
+    font-align: center;
+}
+
+#interest_icons i + i{
+    padding-left: 0.5em;
+ } 
+
+#contact_button{
+    padding-top: 100px;
+    width:100%;
+    text-align: center; 
+    background-color: white; 
+    font-family: 'Montserrat', sans-serif;  
+    left: 0;
+    bottom: 0;
+}  
+
+#contact_button p{
+    color: #727c7a;
+}
+/* 
+Code for creating contact button taken from https://cssbuttoncreator.com/
+accessed 10.2.2020, updated to use my chosen colours, fonts, sizing, padding, etc
+end of referenced code. */
+
+.BUTTON_ISN {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    color: #2eaf7d;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    padding: 10px 40px;
+    background-color:#c1f6ed;
+    border: solid #c1f6ed 1px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+ }
+ 
+ .BUTTON_ISN:hover {
+    background:  #2eaf7d;
+    border: solid  #2eaf7d 1px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    text-decoration: none;#
+    color: white;
+ }
+
+  
+ #contact_button p{
+    padding-top: 30px;
+    font-size: 0.8rem;
+}
+
+/* md */
+@media (max-width: 1200px) {
+    #profilepic {
+        width: 300px;
+        border: 10px solid white;
+    }
+    #title h1{
+        font-size: 4.5rem;
+    }
+    #title h2{
+        font-size: 1.4rem;
+    }
+    #interest_icons{
+        padding-top: 10px;
+        font-size: 2.2rem;
+        align: center;
+    }
+    #contact_button{
+        padding: 60px 7%;
+        text-align: center; 
+        color: #2eaf7d; 
+        font-family: 'Montserrat', sans-serif;  
+    }    
+    #contact_button p{
+        padding-top: 30px;
+        font-size: 0.8rem;
+    }
+
+    .ABlogBy{
+        font-size: 1.2rem;
+    }
+    .Helen a{
+        font-size: 4rem;
+    }
+
+    .completingMSc{
+        font-size: 1.2rem;
+        margin-left: -70px;
+    }
+
+    .bannerImage img{
+        margin-left: 0;
+    }
+
+    #dropdownMenuButton{
+        margin-left: -150px;
+    }
+
+    .sortBySubmit #submit{
+        margin-right: -100px;
+    }
+
+    .imageContainer .imageDescription{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #postTitle{
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .formLabel{
+        font-size: 1.3rem;
+    }
+
+    .commentSubmit #submit{
+        margin-left:10px;
+        margin-top: 0;
+        border: none;
+    }
+
+    .commentBox{
+        width: 200px;
+        height: 42.23px;
+    }
+
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right:0;
+        padding-left: .4rem;
+        font-size: 1rem;
+        margin-left: 0;
+    }
+
+    .navbar-brand{
+        font-size:0.95rem;
+        margin-right: 20px;
+        margin-left: -10px;
+
+    }
+    .navbar-nav{
+        margin-left: -20px;
+    }
+
+    #searchBox{
+        width: 80px;
+        margin-left: 2px;
+    }
+
+    .registerLabel{
+        margin-left:-50px;
+    }
+    .loginLabel{
+        margin-left:-20px;
+    }
+}
+/* small */
+@media (max-width: 800px) {
+    #profilepic {
+        width: 200px;
+        border: 7px solid white;
+    }
+    #contact_button{
+        padding: 60px 7%;
+        text-align: center; 
+        color: #2eaf7d; 
+        font-family: 'Montserrat', sans-serif;  
+    }    
+    #contact_button p{
+        padding-top: 30px;
+        font-size: 0.8rem;
+    }
+
+    .subTitleText{
+        flex-direction: column;
+        align-content: center;
+        text-align: center;
+    }
+
+    #allPostsCol{
+        text-align: center;
+        flex-direction: column;
+    }
+    #sortByColumn{
+        padding-left: 20px;
+    }
+
+    #submit{
+        margin-left: -20px;
+    }
+    #allPostsTitle{
+        margin-left: 0;
+    }
+
+    .navbar{
+        max-width: 100%;
+    }
+
+    .navbar-collapse {
+        margin-left: 30%;
+        text-align: center;
+    }
+    .navbar-collapse #navbarSecondCol{
+        text-align: center;
+        margin-left: -70px;
+        padding: 0;
+    }
+
+    #searchBox{
+        text-align: center;
+        margin-left: 40px;
+    }
+
+    .titleBanner{
+        flex-direction: column;
+    }
+    
+    .ABlogBy{
+        padding-left: 10px;
+        margin-top: 10px;
+    }
+
+    .Helen a{
+
+        font-size: 3.2rem;
+    }
+
+    .completingMSc{;
+        padding-top: 0;
+        margin-left: 0;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .bannerImage img{
+        margin-left: 0;
+    }
+
+    .imageDescription{
+        padding-top:30px;
+    }
+
+    .imageDescription p{
+        font-size: 1rem;
+    }
+    
+    .imageContainer .imageDescription{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .linkAllPosts{
+        font-size: 1rem;
+    }
+
+    .postTitle{
+        font-size: 1rem;
+    }
+
+    #postTitle{
+        font-size: 3rem;
+    }
+
+    .postContainer p{
+        word-wrap: break-word;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .postContainer h2{
+        font-size:1.2rem;
+        padding-left: 0;
+        padding-right: 0;
+
+    }
+
+    .formLabel{
+        font-size: 1rem;
+    }
+
+    #submit{
+        width: 180px;
+    }
+
+    .tagLabels{
+        margin-left: -20px;
+    }
+
+    .ratingSubmit{
+        margin-right: -25px;
+    }
+
+    #tagSubtitle{
+        font-size: 1rem;
+    }
+
+    .commentSubmit #submit{
+        margin-left:115px;
+        margin-top:10px;
+    }
+
+    #loginTitle{
+        font-size: 3.5rem;
+    }
+
+    .loginLabel{
+        margin-left: 20px;
+    }
+
+    .loginBox{
+        width: 330px;
+    }
+
+    #loginButton{
+        width: 330px;
+        margin: auto;
+    }
+    #registerTitle{
+        font-size:  3.5rem;
+    }
+
+    .registerBox{
+        width: 300px;
+    }
+
+    #registerButton{
+        width: 300px;
+        margin: auto;
+    }
+
+    .registerLabel{
+        margin-left: 40px;
+    }
+
+    .loginFooter{
+        font-size: 1.2rem;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    #userTitle h1{
+        font-size: 3.5rem;
+    }
+
+    #userTitle h2{
+        font-size: 1rem;
+    }
+
+    .allPostsBanner{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .allPostsBanner h2{
+        margin:0;
+    }
+
+    #dropdownMenuButton{
+        margin: 0 0 0 40px;
+    }
+
+    .allPostsBanner #submit{
+        margin-left: 70px;
+        margin-top: 5px;
+    }
+}
+
+@media (min-width: 1900px){
+
+.titleBanner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2eaf7d;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.bannerImage img{
+    border-radius: 50%;
+    border: 7px solid white;
+    width: 200px;
+    margin-left: 10px;
+}
+.titleBanner h2{
+    color:#c1f6ed;
+}
+
+.ABlogBy{
+    flex-shrink: 0;
+    font-size:2rem;
+    padding-left: 10px;
+    margin-top: -15px;
+}
+
+.Helen{
+    flex-shrink: 0;
+    font-size: 7rem;
+}
+
+.Helen a{
+    text-decoration: none;
+}
+
+.completingMSc{
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    padding-top: 110px;
+    margin-left: -110px;
+}
+
+.registerLabel{
+    margin-left:180px;
+}
+
+.registerBox{
+    margin-left: 180px;
+}
+
+.loginLabel{
+    margin-left:215px;
+}
+
+.loginBox{
+    margin-left: 120px;
+}
+}
+

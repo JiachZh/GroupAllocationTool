@@ -16,4 +16,4 @@ login_manager.login_message = 'Please log in to access this feature!'
 
 from blog import routes
 
-from blog.models import Student, Module, Lecturer, Option, Questionnaire
+from blog.models import User, Option, Questionnaire
