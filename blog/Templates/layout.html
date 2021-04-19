@@ -15,6 +15,50 @@
   </head>
 
   <body>
+    <nav class="flex-box navbar navbar-custom navbar-expand-lg" id="navbar">
+      <a class="navbar-brand" href="{{ url_for('home') }}" id="name">Team Q Group Allocation Site</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+      <div class="flex-box row mx-lg-n5 g-0 collapse navbar-collapse" id="navbarTogglerDemo01">
+          <div class = "col-md-12 ms-auto" id="navbarSecondCol">
+              <ul class="navbar-nav ms-auto" id="secondColContent">
+                  {% if current_user.is_authenticated %}
+                  <span class="navbar-text text-nowrap">
+                      Hello, {{ current_user.firstname }}!
+                  </span>                  
+                  <li class="nav-item">
+                      <a class="nav-link text-nowrap" href="{{ url_for('logout') }}">Logout</a>
+                  </li>
+                  {% else %}
+                  <span class="navbar-text text-nowrap">
+                      Hello, Guest!
+                  </span> 
+                  <li class="nav-item text-nowrap">
+                      <a class="nav-link" href="{{ url_for('login') }}">Login&nbsp;</a>
+                  </li>
+                  <span class="navbar-text">
+                      or 
+                  </span>   
+                  <li class="nav-item">
+                      <a class="nav-link text-nowrap" href="{{ url_for('register') }}">Register</a>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                      <a class="nav-link text-nowrap" href="{{ url_for('home') }}" class="header">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ url_for('questionnaire') }}" class="header">Questionnaire</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link text-nowrap" href="{{ url_for('grouplist') }}" class="header">Grouplist</a>
+                  </li>
+
+              </ul>
+       </div>
+  </nav>
     <div id="flashes">
       {% with messages = get_flashed_messages() %}
           {% if messages %}

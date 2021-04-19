@@ -1,7 +1,7 @@
 from flask import flash
 from flask_wtf import FlaskForm
 from blog.models import User, Option, Questionnaire
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, RadioField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, InputRequired, Length, Email, ValidationError, Regexp, EqualTo
 
 
@@ -39,4 +39,7 @@ class LoginForm(FlaskForm):
         if not user:
             flash('User not exist or password wrong.')
 
-
+class QuestionnaireForm(FlaskForm):
+    priorProgExp = RadioField('Select your level of programming experience', validators=[InputRequired()],choices=[('0', 'None'),('1','Some'),('2', 'Lots')])
+    priorSTEMDegree = BooleanField('Do you hold a STEM degree (....)',validators=[InputRequired()])
+    submit = SubmitField('Submit')

@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, flash, Markup
 from blog import app, db
 from blog.models import User, Option, Questionnaire
-from blog.forms import RegistrationForm, LoginForm
+from blog.forms import RegistrationForm, LoginForm, QuestionnaireForm
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.sql import func, or_, desc, and_
 
@@ -48,6 +48,17 @@ def logout():
 def grouplist():
     students=User.query.filter(User.isLecturer==False)
     return render_template('grouplist.html',title='Grouplist',students=students)
+
+@app.route("/questionnaire",methods=['GET','POST'])
+@login_required
+def questionnaire():
+  form = QuestionnaireForm()
+  if form.validate_on_submit():
+      current_user.priorProgExp=form.priorProgExp.data
+      current_user.priorSTEMDegree=form.priorSTEMDegree.data
+      db.session.commit()
+      return redirect(url_for('home'))
+  return render_template('questionnaire.html',title='Questionnaire',form=form) 
 
 
 # @app.route("/post/<int:post_id>")
