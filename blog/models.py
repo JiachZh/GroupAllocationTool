@@ -5,7 +5,7 @@ from flask_login import UserMixin
 
 studentModules = db.Table('studentModules',
     db.Column('studentID', db.Integer, db.ForeignKey('student.studentID')),
-    db.Column('moduleCode', db.String, db.ForeignKey('module.code'))
+    db.Column('moduleCode', db.String(15), db.ForeignKey('module.code'))
 )
 
 class Student(UserMixin,db.Model):
@@ -26,7 +26,7 @@ class Student(UserMixin,db.Model):
 class Module(db.Model):
   code = db.Column(db.String(15), primary_key=True)
   title = db.Column(db.Text, nullable=False)
-  lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.id'), nullable=False)
+  lecturer_id = db.Column(db.Integer, db.ForeignKey('lecturer.lecturerID'), nullable=False)
 
   def __repr__(self):
     return f"Module('{self.code}', '{self.title}')"
@@ -39,7 +39,7 @@ class Lecturer(db.Model):
   email=db.Column(db.String(120),unique=True,nullable=False)
   passwordHash=db.Column(db.String(128))
   password=db.Column(db.String(60),nullable=False)
-  moduleCode=db.Column(db.String(50),nullable=False),
+  moduleCode=db.Column(db.String(50),nullable=False)
   is_admin=db.Column(db.Boolean,nullable=False,default=False)
 
   def __repr__(self):
