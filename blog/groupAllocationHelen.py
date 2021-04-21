@@ -49,8 +49,10 @@ ben = Student("ben", 1, True)
 nina = Student("nina", 2, True)
 sarah = Student("sarah", 2, False)
 tim = Student("tim", 1, False)
+charlie = Student("charlie", 0, False)
+ellie = Student("ellie", 2, True)
 
-StudentList = [helen,jiachen,hawwa,bob,steve,jen,ben,nina,sarah,tim]
+StudentList = [helen,jiachen,hawwa,bob,steve,jen,ben,nina,sarah,tim,charlie,ellie]
 
 Exp2STEM = []
 Exp1STEM = []

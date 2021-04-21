@@ -60,7 +60,7 @@ class User(UserMixin,db.Model):
   # modules = db.relationship('Module', secondary=studentModules, backref=db.backref('students', lazy='dynamic'))
 
   def __repr__(self):
-    return f"User('{self.ID}','{self.email}')"
+    return f"User('{self.id}','{self.email}')"
 
   @property
   def password(self):
