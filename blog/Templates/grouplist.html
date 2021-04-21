@@ -1,9 +1,24 @@
 {% extends "layout.html" %} {% block content %}
 
-{% for student in students %}
-{{student.firstname}}
-{{student.lastname}}
+<table class="table" id="groupList">
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <th>StudentID</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Email</th>
+            <th>PriorProgrammingExperience</th>
+            <th>PriorSTEMDegree</th>
+
+        <td>{{student.ID}}</td>
+        <td>{{student.firstname}}</td>
+        <td>{{student.lastname}}</td>
+        <td>{{student.email}}</td>
+        <td>{{student.priorProgExp}}</td>
+        <td>{{student.priorSTEMDegree}}</td>
 
 {% endfor %}
-
+    </tbody>
+</table>
 {% endblock content %}
