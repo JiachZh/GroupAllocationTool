@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div>
+  <h1 id="registerTitle">Registration Form</h1>
+</div>
+<div id="registerContainer" class= "g-0"> 
+  <form method="POST" action="">
+    {{ form.csrf_token }} 
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+        
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
+        <div class="col-md-2 px-lg-5">
+            {{ form.isLecturer.label (class_="registerLabel") }} 
+        </div>    
+        <div class="col-md-5 px-lg-5">
+            {{ form.isLecturer (class_="registerBox")}}
+            {% for error in form.isLecturer.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+        </div> 
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="usernameMessage" style="visibility: hidden;">Needs to be between 3 and 15 characters</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">
+          {{ form.userID.label (class_="registerLabel") }} 
+      </div>    
+      <div class="col-md-5 px-lg-5">
+          {{ form.userID (placeholder="Enter staff or student ID number", class_="registerBox")}}
+          {% for error in form.userID.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="firstnameMessage" style="visibility: hidden;">Needs to be between 3 and 15 characters</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">
+          {{ form.firstname.label (class_="registerLabel") }} 
+      </div>    
+      <div class="col-md-5 px-lg-5">          
+          {{ form.firstname (placeholder="Enter your firstname", class_="registerBox")}}
+          {% for error in form.firstname.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="lastnameMessage" style="visibility: hidden;">Needs to be between 3 and 15 characters</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">    
+          {{ form.lastname.label (class_="registerLabel") }} 
+      </div>    
+      <div class="col-md-5 px-lg-5">              
+          {{ form.lastname (placeholder="Enter your lastname", class_="registerBox")}}
+          {% for error in form.lastname.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="emailMessage" style="visibility: hidden;">Needs to be a valid email address</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">           
+          {{ form.email.label (class_="registerLabel") }} 
+      </div>    
+      <div class="col-md-5 px-lg-5">        
+          {{ form.email (placeholder="Enter your email address", class_="registerBox")}}
+          {% for error in form.email.errors %} <span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="passwordMessage" style="visibility: hidden;">Needs to be between 6 and 20 characters</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">      
+          {{ form.password.label (class_="registerLabel") }} 
+      </div>
+      <div class="col-md-5 px-lg-5"> 
+          {{ form.password (placeholder="Enter a password", class_="registerBox") }}
+          {% for error in form.password.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+    <div class="row flexRow justify-content-md-center g-0 mx-lg-n5">
+      <p id="confirm_passwordMessage" style="visibility: hidden;">Needs to match password entered</p>
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5"> 
+          {{ form.confirm_password.label (class_="registerLabel") }} 
+      </div>
+      <div class="col-md-5 px-lg-5"> 
+          {{ form.confirm_password (placeholder="Re-enter password", class_="registerBox")}}
+          {% for error in form.confirm_password.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+              <br>
+      </div>
+      <div class="row justify-content-md-center g-0 mx-lg-n5" id="buttonRow">
+    <input class="btn btn-secondary dropdown-toggle" type="submit" value="Register" id="registerButton">
+  </form>
+  <div class="row justify-content-md-center g-0 mx-lg-n5"> 
+    <h2 class="loginFooter">Already have an account? Login <a href="/login">here</a>!</h2>
+</div> 
+
+{% endblock content %}

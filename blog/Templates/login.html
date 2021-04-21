@@ -1,3 +1,39 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
+
+<div>
+  <h1 id="loginTitle">Welcome Back!</h2>
+</div>
+<!-- Code for styling jinja elements adapted from https://stackoverflow.com/questions/45569640/assigning-css-class-to-form-element-passed-from-flask-to-jinja
+accessed 18.2.2020, general idea taken and then adapted to my particular stylings
+end of referenced code. -->
+
+<div id="loginSection"> 
+  <div id="loginContainer" class="g-0"> 
+  <form method="POST" action="">
+    {{ form.csrf_token }}
+    <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">
+        {{ form.email.label  (class_="loginLabel") }} 
+      </div>
+      <div class="col-md-5 px-lg-5">
+        {{ form.email (placeholder="Please enter your email address", class_="loginBox") }}
+        {% for error in form.email.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
+      </div>
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="col-md-2 px-lg-5">
+        {{ form.password.label (class_="loginLabel")}}
+      </div>
+      <div class="col-md-5 px-lg-5">
+        {{ form.password (placeholder="Please enter your password", class_="loginBox")}}
+      </div>
+    <div class="row justify-content-md-center g-0 mx-lg-n5" id="LoginbuttonRow">  
+    <input class="btn btn-secondary dropdown-toggle" type="submit" value="Login" id="loginButton">
+  </form>
+    <div class="row justify-content-md-center g-0 mx-lg-n5"> 
+       <h2 class="loginFooter">Don't have an account yet? Register <a href="/register">here</a>!</h2>
+  </div>
+</div>
+
 
 {% endblock content %}
