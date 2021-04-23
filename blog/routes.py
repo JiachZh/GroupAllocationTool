@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, flash, Markup
 from blog import app, db
 from blog.models import User, Option, Questionnaire
-from blog.forms import RegistrationForm, LoginForm, QuestionnaireForm
+from blog.forms import RegistrationForm, LoginForm, QuestionnaireForm, OptionForm
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.sql import func, or_, desc, and_
 
@@ -64,7 +64,7 @@ def questionnaire():
       current_user.priorSTEMDegree=form.priorSTEMDegree.data
       db.session.commit()
       return redirect(url_for('home'))
-  return render_template('questionnaire.html',title='Questionnaire',form=form) 
+  return render_template('questionnaire.html',title='Questionnaire',form=form)
 
 @app.route("/groupallocations",methods=['GET','POST'])
 @login_required
@@ -125,9 +125,21 @@ def groupallocations():
         group[x].group = group[0]
 
     db.session.commit()
-    
+
     students=User.query.filter(User.isLecturer==False)
 
     return render_template('groupallocations.html',title='Groupallocations',students=students, numberOfGroups = numberOfGroups)
 
+@app.route("/optionform",methods=['GET','POST'])
+@login_required
+def optionform():
+  form = OptionForm()
+  option1 = Option.query.filter(Option.optionID==1)
+  option2 = Option.query.filter(Option.optionID==2)
 
+  if form.validate_on_submit():
+      option1.priority=form.option1.data
+      option2.priority=form.option2.data
+      db.session.commit()
+      return redirect(url_for('home'))
+  return render_template('optionform.html',title='OptionForm',form=form)
