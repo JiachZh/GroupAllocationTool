@@ -7,20 +7,22 @@
             <th>FirstName</th>
             <th>LastName</th>
             <th>Email</th>
+            <th>Group</th>
             <th>PriorProgrammingExperience</th>
             <th>PriorSTEMDegree</th>
         </tr>
     </thead>
     
     <tbody>
-        {% for student in students %}
+        {% for user in students %}
         <tr>
             <td>{{user.id}}</td>
             <td>{{user.firstname}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.group}}</td>
             <td>{{user.priorProgExp}}</td>
-            <td>{{user.priorSTEMDegree}}</td>
+            <td>{{user.priorSTEMDegree}}</td>  
         </tr>
         {% endfor %}
     </tbody>
