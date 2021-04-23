@@ -1,0 +1,17 @@
+{% extends "layout.html" %} {% block content %}
+
+{% for x in range(1,(numberOfGroups+1)) %}
+    <h2>Group {{ x }} </h2>
+
+    {% for student in students %}
+        {% if student.group == x|string %}
+        {{student.firstname}}
+        {{student.lastname}}
+        {{student.group}}
+    {% endif %}
+    {% endfor %}
+{% endfor %}
+
+
+
+{% endblock content %}

@@ -39,47 +39,96 @@ class Student:
     def __repr__(self):
         return self.name
 
-helen = Student("helen", 2, False)
-jiachen = Student("jiachen", 1, False)
-hawwa = Student("hawwa", 3, True)
+helen = Student("helen", 1, False)
+jiachen = Student("jiachen", 0, False)
+hawwa = Student("hawwa", 2, True)
+bob = Student("bob", 0, True)
+steve = Student("steve", 0, False)
+jen = Student("jen", 1, False)
+ben = Student("ben", 1, True)
+nina = Student("nina", 2, True)
+sarah = Student("sarah", 2, False)
+tim = Student("tim", 1, False)
+charlie = Student("charlie", 0, False)
+ellie = Student("ellie", 2, True)
 
-StudentList = [helen,jiachen,hawwa]
-print(StudentList)
+StudentList = [helen,jiachen,hawwa,bob,steve,jen,ben,nina,sarah,tim,charlie,ellie]
 
-Exp3STEM = []
 Exp2STEM = []
 Exp1STEM = []
-Exp3NoSTEM = []
+Exp0STEM = []
 Exp2NoSTEM = []
 Exp1NoSTEM = []
+Exp0NoSTEM = []
 
 for student in StudentList:
 
-    if student.priorProgExp == 3 and student.priorSTEMDegree == True:
-        Exp3STEM.append(student)
-    elif student.priorProgExp == 2 and student.priorSTEMDegree == True:
+    if student.priorProgExp == 2 and student.priorSTEMDegree == True:
         Exp2STEM.append(student)
     elif student.priorProgExp == 1 and student.priorSTEMDegree == True:
         Exp1STEM.append(student)
-    elif student.priorProgExp == 3 and student.priorSTEMDegree == False:
-        Exp3NoSTEM.append(student)
+    elif student.priorProgExp == 0 and student.priorSTEMDegree == True:
+        Exp0STEM.append(student)
     elif student.priorProgExp == 2 and student.priorSTEMDegree == False:
         Exp2NoSTEM.append(student)
     elif student.priorProgExp == 1 and student.priorSTEMDegree == False:
         Exp1NoSTEM.append(student)
+    elif student.priorProgExp == 0 and student.priorSTEMDegree == False:
+        Exp0NoSTEM.append(student)
 
-print(Exp3STEM, Exp2STEM, Exp1STEM, Exp3NoSTEM, Exp2NoSTEM, Exp1NoSTEM)
+print("Exp2STEM = ", Exp2STEM,"Exp1STEM = ",  Exp1STEM, "Exp0STEM = ", Exp0STEM, "Exp2NoSTEM = ", Exp2NoSTEM, "Exp1NoSTEM = ", Exp1NoSTEM, "Exp0NoSTEM = ", Exp0NoSTEM)
 
 #check group size needed
 
-maxGroupSize = lecturerSpec
+# maxGroupSize = lecturerSpec
 
 #create groups
 
-numberOfGroups = (numberOfStudents / maxGroupSize)#rounded up
+# numberOfGroups = (numberOfStudents / maxGroupSize)
+#rounded down but add remaining students to groups
 
-class Group:
-    def __init__(self, groupId, students):
-        self.groupId = groupId
-        self.students = students
-    
+# class Group:
+#     def __init__(self, groupId, students):
+#         self.groupId = groupId
+#         self.students = students
+
+numberOfGroups = 10
+
+listOfGroups = []
+for x in range(numberOfGroups):
+    listOfGroups.append([x+1])
+
+
+def allocateCategoryOfStudents(category, startingGroupNumber):
+    print(category)
+    print("len(cat)=", len(category))
+    if len(category) == 0:
+        return startingGroupNumber
+    for x in range(startingGroupNumber, len(listOfGroups)):
+        print(startingGroupNumber, len(listOfGroups))
+        if len(category) > 0:
+            listOfGroups[x].append(category.pop())
+        else:
+            return listOfGroups[x][0]-1
+    while len(category) > 0:
+        for group in listOfGroups:
+            if len(category) > 0:
+                group.append(category.pop())
+            else:
+                return group[0]-1
+
+
+
+# print("output=", allocateCategoryOfStudents(Exp2STEM, 0))
+# print("output=", allocateCategoryOfStudents(Exp1STEM, 1))
+
+
+x = allocateCategoryOfStudents(Exp2STEM, 0)
+y = allocateCategoryOfStudents(Exp1STEM, x)
+z = allocateCategoryOfStudents(Exp0STEM, y)
+a = allocateCategoryOfStudents(Exp2NoSTEM, z)
+b = allocateCategoryOfStudents(Exp1NoSTEM, a)
+c = allocateCategoryOfStudents(Exp0NoSTEM, b)
+
+print("finalgrouplist=", listOfGroups)
+print("final categories=", Exp2STEM, Exp1STEM, Exp0STEM, Exp2NoSTEM, Exp1NoSTEM, Exp0NoSTEM)
