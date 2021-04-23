@@ -1,0 +1,22 @@
+{% extends "layout.html" %} 
+{% block content %}
+<h2>All Groups in CMT313 Module</h2>
+
+<p>
+  <button id="sort-smallest-first" type="button" class="btn btn-secondary">Sort groups</button>
+</p>
+
+<table class="table" id="groups">
+    <tbody>
+      {% for group in students %}
+      <tr>
+        <td>
+          <em><a href="{{ url_for('grouplist') }}">Group 1</a></em>
+        </td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock content %}

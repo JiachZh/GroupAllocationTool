@@ -49,6 +49,12 @@ def grouplist():
     students=User.query.filter(User.isLecturer==False)
     return render_template('grouplist.html',title='Grouplist',students=students)
 
+@app.route("/groups",methods=['GET','POST'])
+@login_required
+def groups():
+    students=User.query.filter(User.isLecturer==False)
+    return render_template('groups.html',title='Groups',students=students)
+
 @app.route("/questionnaire",methods=['GET','POST'])
 @login_required
 def questionnaire():
