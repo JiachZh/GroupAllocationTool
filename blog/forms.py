@@ -23,12 +23,12 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(userName=username.data).first()
         if user:
             raise ValidationError('Username already exist. Please choose a different one.')
-    
+
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Email address is already associated with an account.')
-    
+
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -43,3 +43,7 @@ class QuestionnaireForm(FlaskForm):
     priorProgExp = RadioField('Select your level of programming experience', validators=[InputRequired()],choices=[('0', 'None'),('1','Some'),('2', 'Lots')])
     priorSTEMDegree = BooleanField('Do you hold a STEM degree (....)',validators=[InputRequired()])
     submit = SubmitField('Submit')
+
+class OptionForm(FlaskForm):
+    option1 = RadioField('Prior programming experience', choices=[('1', '1'),('2','2'),('3', '3')])
+    option2 = RadioField('Hold a STEM Degree', choices=[('1', '1'),('2','2'),('3', '3')])
