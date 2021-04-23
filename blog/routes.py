@@ -70,12 +70,31 @@ def questionnaire():
 @login_required
 def groupallocations():
     intialStudents=User.query.filter(User.isLecturer==False)
-    Exp2STEM = []
-    Exp1STEM = []
-    Exp0STEM = []
-    Exp2NoSTEM = []
-    Exp1NoSTEM = []
-    Exp0NoSTEM = []
+    top_priority=Option.query(studentAttribute).filter(Option.priority==1)
+    second_priority=Option.query(studentAttribute).filter(Option.priority==2)
+    third_priority=Option.query(studentAttribute).filter(Option.priority==2)
+    numberOfGroups = 10
+    listOfGroups = []
+    for x in range(numberOfGroups):
+        listOfGroups.append([x+1])
+    if top_priority == "gender":
+      women = User.query.filter(and_(User.isLecturer==False, gender=="F"))
+      a=allocateCategoryOfStudents(women, 0)
+      
+      if second_priority == "Prior Prog Exp":
+        menHighExp = User.query.filter(and_(User.isLecturer==False, gender=="M", priorProgExp=="2"))
+        b=allocateCategoryOfStudents(menHighExp, a)
+        menSomeExp = User.query.filter(and_(User.isLecturer==False, gender=="M", priorProgExp=="1"))
+        c=allocateCategoryOfStudents(menHighExp, b)
+      
+        if third_priority == "Prior STEM DEGREE":
+          
+
+
+
+
+
+
 
     for student in intialStudents:
         if student.priorProgExp == 2 and student.priorSTEMDegree == True:
@@ -91,11 +110,7 @@ def groupallocations():
         elif student.priorProgExp == 0 and student.priorSTEMDegree == False:
             Exp0NoSTEM.append(student)
 
-    numberOfGroups = 10
-
-    listOfGroups = []
-    for x in range(numberOfGroups):
-        listOfGroups.append([x+1])
+    
 
 
     def allocateCategoryOfStudents(category, startingGroupNumber):
@@ -134,12 +149,12 @@ def groupallocations():
 @login_required
 def optionform():
   form = OptionForm()
-  option1 = Option.query.filter(Option.optionID==1)
-  option2 = Option.query.filter(Option.optionID==2)
 
   if form.validate_on_submit():
-      option1.priority=form.option1.data
-      option2.priority=form.option2.data
+      Option.query.filter_by(optionID=1).update({'priority':form.option1.data})
+      Option.query.filter_by(optionID=2).update({'priority':form.option2.data})
+      Option.query.filter_by(optionID=3).update({'priority':form.option3.data})
+      Option.query.filter_by(optionID=4).update({'priority':form.option4.data})
       db.session.commit()
       return redirect(url_for('home'))
   return render_template('optionform.html',title='OptionForm',form=form)
