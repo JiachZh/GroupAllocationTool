@@ -52,6 +52,32 @@ tim = Student("tim", 1, False)
 charlie = Student("charlie", 0, False)
 ellie = Student("ellie", 2, True)
 
+#give score based on priority and characteristics
+#change form to store 3 for 1 and 1 for 3?? for priorities
+
+# if STEM degree = 1 
+# for student in students: multiply if STEM degree = True, score = STEM priority?
+# take prior prog score * by exp priority (highest = 6, lowest = 0)
+
+if stem priority = 3 and prior prog = 2
+Exp2STEM = 3+4=10
+Exp1STEM = 3+2=8
+Exp0STEM = 3
+Exp2NoSTEM = 4
+Exp1NoSTEM = 2
+Exp0NoSTEM = 0
+
+if priorprog = 3 and stem = 2
+Exp2STEM = 6+2=10
+Exp1STEM = 3+2=7
+Exp0STEM = 2
+Exp2NoSTEM = 6+0=6
+Exp1NoSTEM = 3
+Exp0NoSTEM = 0
+
+#store score in databasE? or put in lists? separate by gender?
+
+
 StudentList = [helen,jiachen,hawwa,bob,steve,jen,ben,nina,sarah,tim,charlie,ellie]
 
 Exp2STEM = []
@@ -117,11 +143,8 @@ def allocateCategoryOfStudents(category, startingGroupNumber):
             else:
                 return group[0]-1
 
-
-
 # print("output=", allocateCategoryOfStudents(Exp2STEM, 0))
 # print("output=", allocateCategoryOfStudents(Exp1STEM, 1))
-
 
 x = allocateCategoryOfStudents(Exp2STEM, 0)
 y = allocateCategoryOfStudents(Exp1STEM, x)

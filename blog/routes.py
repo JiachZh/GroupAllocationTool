@@ -70,31 +70,12 @@ def questionnaire():
 @login_required
 def groupallocations():
     intialStudents=User.query.filter(User.isLecturer==False)
-    top_priority=Option.query(studentAttribute).filter(Option.priority==1)
-    second_priority=Option.query(studentAttribute).filter(Option.priority==2)
-    third_priority=Option.query(studentAttribute).filter(Option.priority==2)
-    numberOfGroups = 10
-    listOfGroups = []
-    for x in range(numberOfGroups):
-        listOfGroups.append([x+1])
-    if top_priority == "gender":
-      women = User.query.filter(and_(User.isLecturer==False, gender=="F"))
-      a=allocateCategoryOfStudents(women, 0)
-      
-      if second_priority == "Prior Prog Exp":
-        menHighExp = User.query.filter(and_(User.isLecturer==False, gender=="M", priorProgExp=="2"))
-        b=allocateCategoryOfStudents(menHighExp, a)
-        menSomeExp = User.query.filter(and_(User.isLecturer==False, gender=="M", priorProgExp=="1"))
-        c=allocateCategoryOfStudents(menHighExp, b)
-      
-        if third_priority == "Prior STEM DEGREE":
-          
-
-
-
-
-
-
+    Exp2STEM = []
+    Exp1STEM = []
+    Exp0STEM = []
+    Exp2NoSTEM = []
+    Exp1NoSTEM = []
+    Exp0NoSTEM = []
 
     for student in intialStudents:
         if student.priorProgExp == 2 and student.priorSTEMDegree == True:
@@ -110,7 +91,11 @@ def groupallocations():
         elif student.priorProgExp == 0 and student.priorSTEMDegree == False:
             Exp0NoSTEM.append(student)
 
-    
+    numberOfGroups = 10
+
+    listOfGroups = []
+    for x in range(numberOfGroups):
+        listOfGroups.append([x+1])
 
 
     def allocateCategoryOfStudents(category, startingGroupNumber):
@@ -144,6 +129,7 @@ def groupallocations():
     students=User.query.filter(User.isLecturer==False)
 
     return render_template('groupallocations.html',title='Groupallocations',students=students, numberOfGroups = numberOfGroups)
+
 
 @app.route("/optionform",methods=['GET','POST'])
 @login_required
