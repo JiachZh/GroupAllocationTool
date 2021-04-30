@@ -56,6 +56,7 @@ class User(UserMixin,db.Model):
   password=db.Column(db.String(60),nullable=False)
   priorProgExp=db.Column(db.Integer,nullable=True)
   priorSTEMDegree=db.Column(db.Boolean,nullable=True)
+  gender=db.Column(db.String(15),nullable=False)
   group=db.Column(db.String(60),nullable=True)
   # modules = db.relationship('Module', secondary=studentModules, backref=db.backref('students', lazy='dynamic'))
 
