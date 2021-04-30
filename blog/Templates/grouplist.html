@@ -17,6 +17,7 @@
     <tbody>
 
     {% for user in students|sort(attribute='group') %}
+        {% if user.group != NULL %}
         <tr>
             <td>{{user.id}}</td>
             <td>{{user.firstname}}</td>
@@ -27,6 +28,7 @@
             <td>{{user.priorSTEMDegree}}</td> 
             <td>{{user.gender}}</td>
         </tr>
+        {% endif %}
                 
      {% endfor %}
     </tbody>
