@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<h2>Please select which student attributes you would like groups to be allocated by.</h2>
+<p>You can select up to three, please use the radio buttons to select a level of priority for up to three attributes.</p>
+
 <div id="loginSection">
     <div id="loginContainer" class="g-0">
     <form method="POST" action="">
@@ -13,12 +16,26 @@
           {{ form.option1 (class_="loginBox") }}
           {% for error in form.option1.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
         </div>
-        <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
         <div class="col-md-4 px-lg-5">
           {{ form.option2.label (class_="loginLabel")}}
         </div>
         <div class="col-md-5 px-lg-5">
           {{ form.option2 (class_="loginBox")}}
+        </div>
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
+        <div class="col-md-4 px-lg-5">
+          {{ form.option3.label (class_="loginLabel")}}
+        </div>
+        <div class="col-md-5 px-lg-5">
+          {{ form.option3 (class_="loginBox")}}
+        </div>
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
+        <div class="col-md-4 px-lg-5">
+          {{ form.option4.label (class_="loginLabel")}}
+        </div>
+        <div class="col-md-5 px-lg-5">
+          {{ form.option4 (class_="loginBox")}}
         </div>
       <div class="row justify-content-md-center g-0 mx-lg-n5" id="LoginbuttonRow">
       <input class="btn btn-secondary dropdown-toggle" type="submit" value="Submit" id="loginButton">
