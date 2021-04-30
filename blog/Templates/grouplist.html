@@ -10,11 +10,13 @@
             <th>Group</th>
             <th>PriorProgrammingExperience</th>
             <th>PriorSTEMDegree</th>
+            <th>Gender</th>
         </tr>
     </thead>
     
     <tbody>
-        {% for user in students %}
+
+    {% for user in students|sort(attribute='group') %}
         <tr>
             <td>{{user.id}}</td>
             <td>{{user.firstname}}</td>
@@ -22,9 +24,12 @@
             <td>{{user.email}}</td>
             <td>{{user.group}}</td>
             <td>{{user.priorProgExp}}</td>
-            <td>{{user.priorSTEMDegree}}</td>  
+            <td>{{user.priorSTEMDegree}}</td> 
+            <td>{{user.gender}}</td>
         </tr>
-        {% endfor %}
+                
+     {% endfor %}
     </tbody>
 </table>
+
 {% endblock content %}
