@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div id="loginSection"> 
-    <div id="loginContainer" class="g-0"> 
+<div id="loginSection">
+    <div id="loginContainer" class="g-0">
     <form method="POST" action="">
       {{ form.csrf_token }}
       <div class="row justify-content-md-center g-0 mx-lg-n5">
         <div class="col-md-4 px-lg-5">
-          {{ form.priorProgExp.label  (class_="loginLabel") }} 
+          {{ form.priorProgExp.label  (class_="loginLabel") }}
         </div>
         <div class="col-md-5 px-lg-5">
           {{ form.priorProgExp (class_="loginBox") }}
@@ -20,7 +20,14 @@
         <div class="col-md-5 px-lg-5">
           {{ form.priorSTEMDegree (class_="loginBox")}}
         </div>
-      <div class="row justify-content-md-center g-0 mx-lg-n5" id="LoginbuttonRow">  
+        <div class="row justify-content-md-center g-0 mx-lg-n5">
+        <div class="col-md-4 px-lg-5">
+          {{ form.gender.label (class_="loginLabel")}}
+        </div>
+        <div class="col-md-5 px-lg-5">
+          {{ form.gender (class_="loginBox")}}
+        </div>
+      <div class="row justify-content-md-center g-0 mx-lg-n5" id="LoginbuttonRow">
       <input class="btn btn-secondary dropdown-toggle" type="submit" value="Submit" id="loginButton">
     </form>
 
