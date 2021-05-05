@@ -49,4 +49,5 @@ class OptionForm(FlaskForm):
     option1 = RadioField("1. Students' level of programming experience", choices=[('1', '1'),('2','2'),('3', '3')])
     option2 = RadioField('2. Whether students hold a STEM Degree', choices=[('1', '1'),('2','2'),('3', '3')])
     option3 = BooleanField('3. Would you rather avoid having students being the only male or female in their team? Select if yes.')
-    groupSize = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
+    option4 = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
+    submit = SubmitField('Submit')
