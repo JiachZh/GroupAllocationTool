@@ -178,15 +178,12 @@ def groupallocations():
 @login_required
 def optionform():
   form = OptionForm()
-  option1 = Option.query.filter(Option.optionID==1)
-  option2 = Option.query.filter(Option.optionID==2)
-  option3 = Option.query.filter(Option.optionID==3)
-
 
   if form.validate_on_submit():
-      option1.priority=form.option1.data
-      option2.priority=form.option2.data
-      option3.priority=form.option3.data
+      Option.query.filter_by(optionID=1).update({'priority':form.option1.data})
+      Option.query.filter_by(optionID=2).update({'priority':form.option2.data})
+      Option.query.filter_by(optionID=3).update({'priority':form.option3.data})
+      Option.query.filter_by(optionID=4).update({'priority':form.option4.data})
       db.session.commit()
       return redirect(url_for('home'))
   return render_template('optionform.html',title='OptionForm',form=form)
