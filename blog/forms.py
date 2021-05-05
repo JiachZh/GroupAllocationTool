@@ -23,12 +23,12 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(userName=username.data).first()
         if user:
             raise ValidationError('Username already exist. Please choose a different one.')
-
+    
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('Email address is already associated with an account.')
-
+    
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])

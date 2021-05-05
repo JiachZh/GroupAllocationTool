@@ -1,28 +1,84 @@
 {% extends "layout.html" %} {% block content %}
 
+<h2 id="group-name"></h2>
+
 <table class="table" id="groupList">
     <thead>
         <tr>
-            <th>StudentID</th>
-            <th>FirstName</th>
-            <th>LastName</th>
-            <th>Email</th>
-            <th>PriorProgrammingExperience</th>
-            <th>PriorSTEMDegree</th>
+            <th data-sortable="true">StudentID</th>
+            <th data-sortable="true">FirstName</th>
+            <th data-sortable="true">LastName</th>
+            <th data-sortable="true">Email</th>
+            <th data-sortable="true">Group</th>
+            <th data-sortable="true">PriorProgrammingExperience</th>
+            <th data-sortable="true">PriorSTEMDegree</th>
+            <th data-sortable="true">Gender</th>
         </tr>
     </thead>
     
     <tbody>
-        {% for student in students %}
+    {% for user in students %}
         <tr>
             <td>{{user.id}}</td>
             <td>{{user.firstname}}</td>
             <td>{{user.lastname}}</td>
             <td>{{user.email}}</td>
+            <td>{{user.group}}</td>
             <td>{{user.priorProgExp}}</td>
-            <td>{{user.priorSTEMDegree}}</td>
-        </tr>
-        {% endfor %}
+            <td>{{user.priorSTEMDegree}}</td> 
+            <td>{{user.gender}}</td>
+        </tr>          
+     {% endfor %}
     </tbody>
 </table>
+
+<div style="margin-left:20px;margin-top:20px;font-size:small;color:darkgray">
+<p>PriorProgrammingExperience: 0= ; 1 = ; 2 = ; </p>
+<p>PriorSTEMDegree: 0= Non-STEM Degree ; 1= STEM Degree </p>
+<p>Gender: M= Male; F= Famale; O= Other/Prefer not to say</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+
+<script>
+  var cssId = 'bstable';  // you could encode the css path itself to generate id..
+  if (!document.getElementById(cssId)) {
+    var head = document.getElementsByTagName('head')[0];
+    var link = document.createElement('link');
+    link.id = cssId;
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css';
+    link.media = 'all';
+    head.appendChild(link);
+  }
+  var groupName = new URLSearchParams(window.location.search).get('group');
+  if(groupName === null) {
+    groupName = 'None';
+  }
+  document.querySelector('#group-name').innerText = 'Group: ' + groupName;
+  document.querySelectorAll('tbody>tr').forEach(el => {
+    if(el.querySelectorAll('td')[4].innerText !== groupName) {
+      $(el).remove();
+    }
+  })
+
+  $('#groupList').bootstrapTable({
+    search: true,
+    showSearchButton: true,
+    sortable: true,
+    showExport: true,
+    exportTypes: ['excel'],
+    exportOptions: {
+      fileName: 'Group ' + groupName
+    }
+  });
+
+</script>
+
 {% endblock content %}

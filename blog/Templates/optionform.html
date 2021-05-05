@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<h2>Please select which student attributes you would like groups to be allocated by.</h2>
+<p>For options 1 and 2, please select the level of priority, or leave blank, and for option 3 either select or leave blank.</p>
+
 <div id="loginSection">
     <div id="loginContainer" class="g-0">
     <form method="POST" action="">
@@ -13,7 +16,7 @@
           {{ form.option1 (class_="loginBox") }}
           {% for error in form.option1.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
         </div>
-        <div class="row justify-content-md-center g-0 mx-lg-n5">
+      <div class="row justify-content-md-center g-0 mx-lg-n5">
         <div class="col-md-4 px-lg-5">
           {{ form.option2.label (class_="loginLabel")}}
         </div>
