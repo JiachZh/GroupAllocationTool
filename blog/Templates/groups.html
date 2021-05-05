@@ -1,22 +1,28 @@
 {% extends "layout.html" %} 
+
 {% block content %}
 <h2>All Groups in CMT313 Module</h2>
 
-<p>
-  <button id="sort-smallest-first" type="button" class="btn btn-secondary">Sort groups</button>
-</p>
+<div id="groups" class="list-group"> </div>
+<div id= "groups-data" class="d-none">
+  [{% for student in students %}
+  ["{{ student.firstname }} {{ student.lastname }}", "{{ student.group }}"]{{ ", " if not loop.last else "" }}
+  {% endfor %}]
+</div>
 
-<table class="table" id="groups">
-    <tbody>
-      {% for group in students %}
-      <tr>
-        <td>
-          <em><a href="{{ url_for('grouplist') }}">Group 1</a></em>
-        </td>
-      </tr>
-        {% endfor %}
-    </tbody>
-  </table>
 
+  <script>
+    var data = JSON.parse(document.querySelector('#groups-data').innerHTML);
+    var groups = [];
+    data.forEach(d => {
+      if(groups[d[1]] === undefined) {
+        groups[d[1]] = [d[0]];
+      } else {
+        groups[d[1]].push(d[0]);
+      }
+    });
+    document.querySelector("#groups").innerHTML = Object.entries(groups).map(x => `<a href="{{ url_for('grouplist') }}?group=${x[0]}" class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Group ${x[0]}</h5><small>${x[1].length} member${x[1].length > 1 ? 's' : ''}</small></div><p class="mb-1">${x[1].slice(0, 2).join(', ')}, et al.</p></a>`).join('');
+  
+  </script>
 
 {% endblock content %}
