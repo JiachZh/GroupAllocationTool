@@ -38,14 +38,15 @@ class LoginForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if not user:
             flash('User not exist or password wrong.')
-
+    
 class QuestionnaireForm(FlaskForm):
     priorProgExp = RadioField('Select your level of programming experience', validators=[InputRequired()],choices=[('0', 'None'),('1','Some'),('2', 'Lots')])
-    priorSTEMDegree = BooleanField('Do you hold a STEM degree? Select if yes.')
+    priorSTEMDegree = BooleanField('Do you hold a STEM degree (....)',validators=[InputRequired()])
+    gender = RadioField('Gender', validators=[InputRequired()], choices= [('M', 'Male'), ('F', 'Female'), ('O', 'Prefer not to say')])
     submit = SubmitField('Submit')
 
 class OptionForm(FlaskForm):
-    option1 = RadioField("1. Students' level of programming experience", choices=[('1', '1'),('2','2'),('3', '3')])
-    option2 = RadioField('2. Whether students hold a STEM Degree', choices=[('1', '1'),('2','2'),('3', '3')])
-    option3 = BooleanField('3. Would you rather avoid having students being the only male or female in their team? Select if yes.')
-
+    option1 = RadioField('Prior programming experience', choices=[('1', 'low'),('2','medium'),('3', 'high')])
+    option2 = RadioField('Hold a STEM Degree', choices=[('1', 'low'),('2','medium'),('3', 'high')])
+    option3 = RadioField('Gender', choices=[('1', 'low'),('2','medium'),('3', 'high')])
+    groupSize = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])

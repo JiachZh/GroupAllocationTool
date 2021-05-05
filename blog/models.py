@@ -92,6 +92,7 @@ class Questionnaire(db.Model):
   questionnaireID=db.Column(db.String(20),primary_key=True)
   option1=db.Column(db.String(20), db.ForeignKey('option.optionID'), nullable=False)
   option2=db.Column(db.String(20),db.ForeignKey('option.optionID'), nullable=False)
+  option3=db.Column(db.String(20),db.ForeignKey('option.optionID'), nullable=False)
   # option3=db.Column(db.String(20),db.ForeignKey('option.optionID'), nullable=False)
 
   def __repr__(self):
