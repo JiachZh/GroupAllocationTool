@@ -60,16 +60,16 @@
 # # take prior prog score * by exp priority (highest = 6, lowest = 0)
 
 # if stem priority = 3 and prior prog = 2
-# Exp2STEM = 3+4=10
-# Exp1STEM = 3+2=8
+# Exp2STEM = 3+4=7
+# Exp1STEM = 3+2=5
 # Exp0STEM = 3
 # Exp2NoSTEM = 4
 # Exp1NoSTEM = 2
 # Exp0NoSTEM = 0
 
 # if priorprog = 3 and stem = 2
-# Exp2STEM = 6+2=10
-# Exp1STEM = 3+2=7
+# Exp2STEM = 6+2=8
+# Exp1STEM = 3+2=5
 # Exp0STEM = 2
 # Exp2NoSTEM = 6+0=6
 # Exp1NoSTEM = 3

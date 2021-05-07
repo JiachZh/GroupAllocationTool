@@ -41,13 +41,13 @@ class LoginForm(FlaskForm):
     
 class QuestionnaireForm(FlaskForm):
     priorProgExp = RadioField('Select your level of programming experience', validators=[InputRequired()],choices=[('0', 'None'),('1','Some'),('2', 'Lots')])
-    priorSTEMDegree = BooleanField('Do you hold a STEM degree (....)',validators=[InputRequired()])
+    priorSTEMDegree = BooleanField('Do you hold a STEM degree? Tick for yes, leave blank for no.')
     gender = RadioField('Gender', validators=[InputRequired()], choices= [('M', 'Male'), ('F', 'Female'), ('O', 'Prefer not to say')])
     submit = SubmitField('Submit')
 
 class OptionForm(FlaskForm):
-    option1 = RadioField("1. Students' level of programming experience", choices=[('1', '1'),('2','2'),('3', '3')])
-    option2 = RadioField('2. Whether students hold a STEM Degree', choices=[('1', '1'),('2','2'),('3', '3')])
+    option1 = RadioField("1. Students' level of programming experience", choices=[('3', 'Highest priority'),('2','Second priority')])
+    option2 = RadioField('2. Whether students hold a STEM Degree', choices=[('3', 'Highest priority'),('2','Second priority')])
     option3 = BooleanField('3. Would you rather avoid having students being the only male or female in their team? Select if yes.')
     option4 = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
     submit = SubmitField('Submit')

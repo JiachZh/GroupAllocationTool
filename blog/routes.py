@@ -62,6 +62,7 @@ def questionnaire():
   if form.validate_on_submit():
       current_user.priorProgExp=form.priorProgExp.data
       current_user.priorSTEMDegree=form.priorSTEMDegree.data
+      current_user.gender=form.gender.data
       db.session.commit()
       return redirect(url_for('home'))
   return render_template('questionnaire.html',title='Questionnaire',form=form)
@@ -76,13 +77,12 @@ def groupallocations():
     PriorExpPriority = PriorExp.priority
     gender = Option.query.filter(Option.optionID==3).first()
     genderPairs = gender.priority
+
     numberPerGroup = Option.query.filter(Option.optionID==4).first()
     numberOfStudentsPerGroup = numberPerGroup.priority
     totalNumberOfStudents = User.query.filter(User.isLecturer==False).count()
     numberOfGroups = round(totalNumberOfStudents/numberOfStudentsPerGroup)
-    print("totalStudents=", totalNumberOfStudents)
-    print("numPerGroup", numberOfStudentsPerGroup)
-    print("numGroups", numberOfGroups)
+
     totalFemale = User.query.filter(and_(User.isLecturer==False, User.gender=="F")).count()
     totalMale = User.query.filter(and_(User.isLecturer==False, User.gender=="M")).count()
     if totalMale >= totalFemale:
@@ -112,31 +112,24 @@ def groupallocations():
         PriorExp = 0
       PriorExpScore = PriorExp * PriorExpPriority
       score = STEMscore + PriorExpScore
-      if genderPairs != None:
+      if genderPairs == 1:
           if gender == majorityGender or gender == "O":
               studentScoresMajGender.append((student, score))
           else:
               studentScoresMinGender.append((student, score))
       else:
           allStudentScores.append((student, score))
-    print("studentScoresMajGender",studentScoresMajGender)
-    print("studentScoresMinGender", studentScoresMinGender)
-    print("allStudentScores", allStudentScores)
+
     #NEED TO SORT LISTS BY SCORE BEFORE ALLOCATION
     studentScoresMajGender = sorted(studentScoresMajGender, key = lambda x:x[1], reverse=True)
     studentScoresMinGender = sorted(studentScoresMinGender, key = lambda x:x[1], reverse=True)
     allStudentScores = sorted(allStudentScores, key = lambda x:x[1], reverse=True)
 
-    print("studentScoresMajGender",studentScoresMajGender)
-    print("studentScoresMinGender", studentScoresMinGender)
-    print("allStudentScores", allStudentScores)
-    print("numGroups", numberOfGroups)
     listOfGroups = []
     for x in range(numberOfGroups):
         listOfGroups.append([x+1])
-    print("groups:", listOfGroups)
-    print("genderPairs", genderPairs)
-    if genderPairs == None:
+
+    if genderPairs == None or genderPairs ==0:
         while len(allStudentScores) > 0:
             for group in listOfGroups:
                 if len(allStudentScores) > 0:
@@ -145,14 +138,14 @@ def groupallocations():
     else:
       while len(studentScoresMinGender) > 0:
           for group in listOfGroups:
-              if len(studentScoresMinGender) > 1:
+              if len(studentScoresMinGender)<=3:
+                  for x in range(0,len(studentScoresMinGender)):
+                    group.append(studentScoresMinGender.pop(x))
+              else:
                   group.append(studentScoresMinGender.pop(0)) #add minorityGender with highest score
                   group.append(studentScoresMinGender.pop(-1)) #add minorityGender with lowest score
-              elif len(studentScoresMinGender) == 1:
-                  group.append(studentScoresMinGender.pop())
-              else:
-                  group.append(studentScoresMajGender.pop(0)) #add majGender with highest score
-                  group.append(studentScoresMajGender.pop(-1))#add majGender with lowest score
+              group.append(studentScoresMajGender.pop(0)) #add majGender with highest score
+              group.append(studentScoresMajGender.pop(-1))#add majGender with lowest score
       while len(studentScoresMajGender) > 0:
           for group in listOfGroups:
               if len(studentScoresMajGender) > 0:
@@ -161,8 +154,7 @@ def groupallocations():
                   break
 
     for group in listOfGroups:
-      print("group[0]", group[0])
-      print("group: ", group)
+
       for x in range(1,len(group)):
           print(group[x][0].firstname)
           group[x][0].group = group[0]
