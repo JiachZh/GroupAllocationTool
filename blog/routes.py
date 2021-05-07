@@ -131,3 +131,16 @@ def groupallocations():
     return render_template('groupallocations.html',title='Groupallocations',students=students, numberOfGroups = numberOfGroups)
 
 
+@app.route("/optionform",methods=['GET','POST'])
+@login_required
+def optionform():
+  form = OptionForm()
+
+  if form.validate_on_submit():
+      Option.query.filter_by(optionID=1).update({'priority':form.option1.data})
+      Option.query.filter_by(optionID=2).update({'priority':form.option2.data})
+      Option.query.filter_by(optionID=3).update({'priority':form.option3.data})
+      Option.query.filter_by(optionID=4).update({'priority':form.option4.data})
+      db.session.commit()
+      return redirect(url_for('home'))
+  return render_template('optionform.html',title='OptionForm',form=form)

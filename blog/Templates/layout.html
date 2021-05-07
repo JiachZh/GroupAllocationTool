@@ -43,9 +43,11 @@
                       or 
                   </span>   
                   <li class="nav-item">
-                      <a class="nav-link text-nowrap" href="{{ url_for('register') }}">Register</a>
+                    <a class="nav-link text-nowrap" href="{{ url_for('register') }}">Register</a>
                   </li>
                   {% endif %}
+
+                  {% if current_user.isLecturer==False %}
                   <li class="nav-item">
                       <a class="nav-link text-nowrap" href="{{ url_for('home') }}" class="header">Home</a>
                   </li>
@@ -54,7 +56,24 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link text-nowrap" href="{{ url_for('groups') }}" class="header">All Groups</a>
-                </li>
+                  </li>
+                  {% else %}
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ url_for('home') }}" class="header">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ url_for('optionform') }}" class="header">Option Form</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ url_for('questionnaire') }}" class="header">Questionnaire</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-nowrap" href="{{ url_for('groups') }}" class="header">All Groups</a>
+                  </li>
+                  {% endif %}
+
+                  
+
                 
 
               </ul>
