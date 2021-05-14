@@ -51,3 +51,7 @@ class OptionForm(FlaskForm):
     option3 = BooleanField('3. Would you rather avoid having students being the only male or female in their team? Select if yes.')
     option4 = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
     submit = SubmitField('Submit')
+
+class GroupAllocationForm(FlaskForm):
+    runAllocations = BooleanField('Select and submit to run group allocations', validators = [InputRequired()])
+    submit = SubmitField('Submit')

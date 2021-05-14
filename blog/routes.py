@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, flash, Markup
 from blog import app, db
 from blog.models import User, Option, Questionnaire
-from blog.forms import RegistrationForm, LoginForm, QuestionnaireForm, OptionForm
+from blog.forms import RegistrationForm, LoginForm, QuestionnaireForm, OptionForm # GroupAllocationForm
 from flask_login import login_user, logout_user, login_required, current_user
 from sqlalchemy.sql import func, or_, desc, and_
 
@@ -55,6 +55,11 @@ def groups():
     students=User.query.filter(User.isLecturer==False)
     return render_template('groups.html',title='Groups',students=students)
 
+@app.route("/lecturerPage",methods=['GET','POST'])
+@login_required
+def lecturerPage():
+  return render_template('lecturerPage.html')
+
 @app.route("/questionnaire",methods=['GET','POST'])
 @login_required
 def questionnaire():
@@ -70,100 +75,117 @@ def questionnaire():
 @app.route("/groupallocations",methods=['GET','POST'])
 @login_required
 def groupallocations():
-    initialStudents=User.query.filter(User.isLecturer==False)
-    STEM = Option.query.filter(Option.optionID==2).first()
-    STEMpriority = STEM.priority
-    PriorExp = Option.query.filter(Option.optionID==1).first()
-    PriorExpPriority = PriorExp.priority
-    gender = Option.query.filter(Option.optionID==3).first()
-    genderPairs = gender.priority
+  initialStudents=User.query.filter(User.isLecturer==False)
+  STEM = Option.query.filter(Option.optionID==2).first()
+  STEMpriority = STEM.priority
+  PriorExp = Option.query.filter(Option.optionID==1).first()
+  PriorExpPriority = PriorExp.priority
+  gender = Option.query.filter(Option.optionID==3).first()
+  genderPairs = gender.priority
 
-    numberPerGroup = Option.query.filter(Option.optionID==4).first()
-    numberOfStudentsPerGroup = numberPerGroup.priority
-    totalNumberOfStudents = User.query.filter(User.isLecturer==False).count()
-    numberOfGroups = round(totalNumberOfStudents/numberOfStudentsPerGroup)
+  numberPerGroup = Option.query.filter(Option.optionID==4).first()
+  numberOfStudentsPerGroup = numberPerGroup.priority
+  totalNumberOfStudents = User.query.filter(User.isLecturer==False).count()
+  numberOfGroups = round(totalNumberOfStudents/numberOfStudentsPerGroup)
 
-    totalFemale = User.query.filter(and_(User.isLecturer==False, User.gender=="F")).count()
-    totalMale = User.query.filter(and_(User.isLecturer==False, User.gender=="M")).count()
-    if totalMale >= totalFemale:
-        majorityGender = "M"
+  totalFemale = User.query.filter(and_(User.isLecturer==False, User.gender=="F")).count()
+  totalMale = User.query.filter(and_(User.isLecturer==False, User.gender=="M")).count()
+  if totalMale >= totalFemale:
+      majorityGender = "M"
+  else:
+      majorityGender = "F"
+
+  studentScoresMajGender = []
+  studentScoresMinGender = []
+  allStudentScores = []
+  for student in initialStudents:
+    if student.gender != None:
+      gender = student.gender
     else:
-        majorityGender = "F"
-
-    studentScoresMajGender = []
-    studentScoresMinGender = []
-    allStudentScores = []
-    for student in initialStudents:
-      if student.gender != None:
-        gender = student.gender
+      student.gender = "O"
+    if student.priorSTEMDegree != None:
+      STEM = student.priorSTEMDegree
+      if STEM == True:
+          STEMscore = STEMpriority
       else:
-        student.gender = "O"
-      if student.priorSTEMDegree != None:
-        STEM = student.priorSTEMDegree
-        if STEM == True:
-            STEMscore = STEMpriority
+          STEMscore = 0
+    else:
+          STEMscore = 0
+    if student.priorProgExp != None:
+      PriorExp = student.priorProgExp
+    else:
+      PriorExp = 0
+    PriorExpScore = PriorExp * PriorExpPriority
+    score = STEMscore + PriorExpScore
+    if genderPairs == 1:
+        if gender == majorityGender or gender == "O":
+            studentScoresMajGender.append((student, score))
         else:
-            STEMscore = 0
-      else:
-            STEMscore = 0
-      if student.priorProgExp != None:
-        PriorExp = student.priorProgExp
-      else:
-        PriorExp = 0
-      PriorExpScore = PriorExp * PriorExpPriority
-      score = STEMscore + PriorExpScore
-      if genderPairs == 1:
-          if gender == majorityGender or gender == "O":
-              studentScoresMajGender.append((student, score))
-          else:
-              studentScoresMinGender.append((student, score))
-      else:
-          allStudentScores.append((student, score))
-
-    #NEED TO SORT LISTS BY SCORE BEFORE ALLOCATION
-    studentScoresMajGender = sorted(studentScoresMajGender, key = lambda x:x[1], reverse=True)
-    studentScoresMinGender = sorted(studentScoresMinGender, key = lambda x:x[1], reverse=True)
-    allStudentScores = sorted(allStudentScores, key = lambda x:x[1], reverse=True)
-
-    listOfGroups = []
-    for x in range(numberOfGroups):
-        listOfGroups.append([x+1])
-
-    if genderPairs == None or genderPairs ==0:
-        while len(allStudentScores) > 0:
-            for group in listOfGroups:
-                if len(allStudentScores) > 0:
-                    group.append(allStudentScores.pop(0)) #does pop go from start? need to pop highest score
-
+            studentScoresMinGender.append((student, score))
     else:
-      while len(studentScoresMinGender) > 0:
+        allStudentScores.append((student, score))
+
+  #NEED TO SORT LISTS BY SCORE BEFORE ALLOCATION
+  studentScoresMajGender = sorted(studentScoresMajGender, key = lambda x:x[1], reverse=True)
+  studentScoresMinGender = sorted(studentScoresMinGender, key = lambda x:x[1], reverse=True)
+  allStudentScores = sorted(allStudentScores, key = lambda x:x[1], reverse=True)
+
+  listOfGroups = []
+  for x in range(numberOfGroups):
+      listOfGroups.append([x+1])
+
+  if genderPairs == None or genderPairs ==0:
+      while len(allStudentScores) > 0:
           for group in listOfGroups:
-              if len(studentScoresMinGender)<=3:
-                  for x in range(0,len(studentScoresMinGender)):
-                    group.append(studentScoresMinGender.pop(x))
-              else:
-                  group.append(studentScoresMinGender.pop(0)) #add minorityGender with highest score
-                  group.append(studentScoresMinGender.pop(-1)) #add minorityGender with lowest score
-              group.append(studentScoresMajGender.pop(0)) #add majGender with highest score
-              group.append(studentScoresMajGender.pop(-1))#add majGender with lowest score
-      while len(studentScoresMajGender) > 0:
-          for group in listOfGroups:
-              if len(studentScoresMajGender) > 0:
-                  group.append(studentScoresMajGender.pop(0))
-              else:
-                  break
+              if len(allStudentScores) > 0:
+                  group.append(allStudentScores.pop(0)) #does pop go from start? need to pop highest score
 
-    for group in listOfGroups:
+  else:
+    while (len(studentScoresMinGender)>0) and (len(studentScoresMajGender)>0):
+      for group in listOfGroups:
+        if len(studentScoresMinGender)>0:
+          if len(studentScoresMinGender)<=3:
+            group.extend(studentScoresMinGender)
+            studentScoresMinGender.clear()
+          else:
+              group.append(studentScoresMinGender.pop(0)) #add minorityGender with highest score
+              group.append(studentScoresMinGender.pop(-1))
+        else:
+          if len(studentScoresMajGender)>1:
+            group.append(studentScoresMajGender.pop(0)) #add majGender with highest score
+            group.append(studentScoresMajGender.pop(-1))
+          elif len(studentScoresMajGender)==1:
+            group.append(studentScoresMajGender.pop(0))
+          else:
+            break
 
-      for x in range(1,len(group)):
-          print(group[x][0].firstname)
-          group[x][0].group = group[0]
+    # while len(studentScoresMinGender) > 0:
+    #     for group in listOfGroups:
+    #         if len(studentScoresMinGender)<=3:
+    #           group.extend(studentScoresMinGender)
+    #           studentScoresMinGender.clear()
+    #         else:
+    #             group.append(studentScoresMinGender.pop(0)) #add minorityGender with highest score
+    #             group.append(studentScoresMinGender.pop(-1)) #add minorityGender with lowest score
+    #         group.append(studentScoresMajGender.pop(0)) #add majGender with highest score
+    #         group.append(studentScoresMajGender.pop(-1))#add majGender with lowest score
+    # while len(studentScoresMajGender) > 0:
+    #     for group in listOfGroups:
+    #         if len(studentScoresMajGender) > 0:
+    #             group.append(studentScoresMajGender.pop(0))
+    #         else:
+    #             break
 
-    db.session.commit()
+  for group in listOfGroups:
 
-    students=User.query.filter(User.isLecturer==False)
-    print("numGroups", numberOfGroups)
-    return render_template('groupallocations.html',title='Groupallocations',students=students, numberOfGroups = numberOfGroups)
+    for x in range(1,len(group)):
+        print(group[x][0].firstname)
+        group[x][0].group = group[0]
+
+  db.session.commit()
+
+  students=User.query.filter(User.isLecturer==False)
+  return render_template('groups.html',title='Groups',students=students)
 
 
 @app.route("/optionform",methods=['GET','POST'])
