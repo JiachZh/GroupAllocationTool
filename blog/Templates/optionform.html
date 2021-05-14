@@ -36,6 +36,7 @@
         </div>
         <div class="col-md-5 px-lg-5">
           {{ form.option4 (class_="loginBox")}}
+          {% for error in form.option4.errors %}<span style="color: red;">[{{ error }}]</span>{% endfor %}
         </div>
       <div class="row justify-content-md-center g-0 mx-lg-n5" id="LoginbuttonRow">
       <input class="btn btn-secondary dropdown-toggle" type="submit" value="Submit" id="loginButton">
