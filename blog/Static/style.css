@@ -155,6 +155,19 @@ margin-left: -25px;
 color: white;
 }
 
+/* groupallocation project */
+
+#optionFormTitle{
+    text-align: center;
+}
+
+
+#optionFormTitle p{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: #727c7a;
+    font-size:1.1rem;
+}
+
 /* home page */
 
 .titleContainer{
@@ -577,7 +590,7 @@ end of referenced code. */
 }
 
 .loginLabel{
-    margin-left:60px;
+    margin-left:150px;
     width: 300px;
     margin-top: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -586,12 +599,30 @@ end of referenced code. */
 }
 
 .loginBox{
-    margin-left: 20px;
+    margin-left: 80px;
     margin-top: 20px;
     width: 355px;
     font-family: 'Merriweather Sans', sans-serif;
     border-radius: .25rem;
-    border-style: solid;
+    border-style: none;
+    list-style-type: none;
+    color:white;
+}
+
+.loginBox li label{
+    margin-left: 15px;
+}
+
+#option3{
+    width:30px;
+    margin-left:104px;
+    margin-top: 60px;
+}
+
+#priorSTEMDegree{
+    width:30px;
+    margin-left:103px;
+    margin-top: 60px;
 }
 
 #loginButton{
