@@ -1,8 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<h2>To select group size and your preferences for group allocation, click <a href="{{ url_for('optionform') }}">here</a></h2>
-<h2>To view students yet to complete the questionnaire, click <a href="http://localhost:5000/grouplist?group=None">here</a></h2>
-<h2>Once students have completed the questionnaires, run the group allocations <a href="{{ url_for('groupallocations') }}">here</a></h2>
+<style>
+    #welcome{
+        background:#2eaf7d;
+        color: white;
+        border-radius: 1em;
+        padding: 1em;
+        margin:10px; 
+        position:absolute;
+        top:50%; 
+        left:50%; 
+        margin-right: -50%;
+        transform:translate(-50%, -50%)
+    }
+    .messagebox{
+        box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
+    ;
+    }
+</style>
+
+<div id="welcome" class=messagebox>
+<p> 🔘 Select group size allocation preferences <a href="{{ url_for('optionform') }}">HERE</a></p>
+<p>📌 View students yet to complete the questionnaire <a href="http://localhost:5000/grouplist?group=None">HERE</a></p>
+<p>▶️ Run the group allocations <a href="{{ url_for('groupallocations') }}">HERE</a>(Once students have completed the questionnaires.)</p>
+</div>
 
 {% endblock content %}
