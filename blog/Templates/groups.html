@@ -3,12 +3,22 @@
 {% block content %}
 <h2>All Groups in CMT313 Module</h2>
 
+
+<input type="text" class="form-control" id="searchgroup" placeholder="Search by student name">
+
+
 <div id="groups" class="list-group"> </div>
 <div id= "groups-data" class="d-none">
   [{% for student in students %}
   ["{{ student.firstname }} {{ student.lastname }}", "{{ student.group }}"]{{ ", " if not loop.last else "" }}
   {% endfor %}]
 </div>
+
+<div style="margin-left:20px;margin-top:20px;font-size:small;color:darkgray">
+  <p>Group None contains students:</p>
+  <p>1. who have registerd with the system but have NOT filled out their questionnaires;</p>
+  <p>2. who have filled out questionnaires but have NOT been allocated a group by the system.</p>
+  </div>
 
 
   <script>
@@ -21,8 +31,18 @@
         groups[d[1]].push(d[0]);
       }
     });
-    document.querySelector("#groups").innerHTML = Object.entries(groups).map(x => `<a href="{{ url_for('grouplist') }}?group=${x[0]}" class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Group ${x[0]}</h5><small>${x[1].length} member${x[1].length > 1 ? 's' : ''}</small></div><p class="mb-1">${x[1].slice(0, 2).join(', ')}, et al.</p></a>`).join('');
+    document.querySelector("#groups").innerHTML = Object.entries(groups).map(x => `<a href="{{ url_for('grouplist') }}?group=${x[0]}" class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Group ${x[0]}</h5><small>${x[1].length} member${x[1].length > 1 ? 's' : ''}</small></div><p class="mb-1">${x[1].join(', ')}</p></a>`).join('');
   
+    //console.log(groups);
+    document.querySelector("#searchgroup").addEventListener("input", e => {
+      Keyword = e.target.value.toLowerCase();
+      document.querySelector("#groups").innerHTML = Object.entries(groups).filter(x => x[1].join("\u2561").toLowerCase().includes(Keyword)).map(x => `<a href="{{ url_for('grouplist') }}?group=${x[0]}" class="list-group-item list-group-item-action"><div class="d-flex w-100 justify-content-between"><h5 class="mb-1">Group ${x[0]}</h5><small>${x[1].length} member${x[1].length > 1 ? 's' : ''}</small></div><p class="mb-1">${x[1].filter(name => name.toLowerCase().includes(Keyword)).map(name => name.replace(new RegExp("(" + Keyword + ")", "gi"), "<b>$1</b>")).join(', ')}.</p></a>`).join('');
+    
+      if (document.querySelector("#groups").innerHTML===""){
+        document.querySelector("#groups").innerHTML = "No matching results."
+      }
+    })
+    
   </script>
 
 {% endblock content %}
