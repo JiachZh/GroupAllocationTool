@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2>To select group size and your preferences for group allocation, click <a href="{{ url_for('optionform') }}">here</a></h2>
+<h2>To view students yet to complete the questionnaire, click <a href="http://localhost:5000/grouplist?group=None">here</a></h2>
+<h2>Once students have completed the questionnaires, run the group allocations <a href="{{ url_for('groupallocations') }}">here</a></h2>
+
+{% endblock content %}
