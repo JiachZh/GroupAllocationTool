@@ -49,9 +49,9 @@ class OptionForm(FlaskForm):
     option1 = RadioField("1. Students' level of programming experience", choices=[('3', 'Highest priority'),('2','Second priority')])
     option2 = RadioField('2. Whether students hold a STEM Degree', choices=[('3', 'Highest priority'),('2','Second priority')])
     option3 = BooleanField('3. Would you rather avoid having students being the only male or female in their team? Select if yes.')
-    option4 = RadioField('Select the number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
+    option4 = RadioField('4. Select the maximum number of students in each group', validators = [InputRequired()], choices=[('5', '5'), ('6', '6')])
     submit = SubmitField('Submit')
 
-class GroupAllocationForm(FlaskForm):
-    runAllocations = BooleanField('Select and submit to run group allocations', validators = [InputRequired()])
-    submit = SubmitField('Submit')
+# class GroupAllocationForm(FlaskForm):
+#     runAllocations = BooleanField('Select and submit to run group allocations', validators = [InputRequired()])
+#     submit = SubmitField('Submit')
